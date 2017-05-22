@@ -94,7 +94,7 @@ tsplot <- ggplot(df.interval, aes(x=interval, y = avg))
 tsplot + geom_line(aes(color = "red"), show.legend = F) + xlab("Interval") + ylab("Avg Number of Steps Taken") + ggtitle("Avg Number of Steps per Interval")
 ```
 
-![](PA1_template_files/figure-html/timeseries plot-1.png)<!-- -->
+![](PA1_template_files/figure-html/timeseriesplot-1.png)<!-- -->
 
 #### 2.2 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -152,7 +152,7 @@ daily.total.fixed <- aggregate(df.full$steps ~ df.full$date, FUN = sum)
 hist(daily.total.fixed$`df.full$steps`, col = "blue", xlab = "Steps", main = "Total Steps per Day - Missing Data Fixed")
 ```
 
-![](PA1_template_files/figure-html/histogram with NA fixed-1.png)<!-- -->
+![](PA1_template_files/figure-html/histogram_with_NA_fixed-1.png)<!-- -->
 
 #### 3.5 Calculate and report the mean and median total number of steps taken per day. 
 
@@ -204,4 +204,4 @@ plot <- ggplot(df.interval.week, aes(x=interval, y= avgStep, color = week)) + ge
 print(plot)
 ```
 
-![](PA1_template_files/figure-html/weektype plot-1.png)<!-- -->
+![](PA1_template_files/figure-html/weektype_plot-1.png)<!-- -->

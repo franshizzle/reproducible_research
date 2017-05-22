@@ -49,7 +49,7 @@ median(daily.steps$steps, na.rm = TRUE)
 
 #### 2.1 Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
-```{r timeseries plot}
+```{r timeseriesplot}
 library(dplyr)
 library(ggplot2)
 
@@ -71,7 +71,7 @@ max.steps
 
 #### 3.1 Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
-```{r missing values}
+```{r missingvalues}
 nrow(df[is.na(df$steps),])
 ```
 
@@ -81,7 +81,7 @@ Strategy: Input missing values with the mean of Steps for that 5 minute interval
 
 #### 3.3 Create a new dataset that is equal to the original dataset but with the missing data filled in.
 
-```{r fill in missing value}
+```{r fillinmissingvalue}
 
 df.full <- df
 
@@ -99,7 +99,7 @@ for(i in 1:nrow(df.full)){
 
 #### 3.4 Make a histogram of the total number of steps taken each day
 
-```{r histogram with NA fixed}
+```{r histogram_with_NA_fixed}
 
 daily.total <- aggregate(df$steps ~ df$date, FUN = sum, na.rm = TRUE)
 daily.total.fixed <- aggregate(df.full$steps ~ df.full$date, FUN = sum)
@@ -111,7 +111,7 @@ hist(daily.total.fixed$`df.full$steps`, col = "blue", xlab = "Steps", main = "To
 
 #### 3.5 Calculate and report the mean and median total number of steps taken per day. 
 
-```{r mean and median total steps}
+```{r mean_and_median_total_steps}
 ## Mean Total Steps Taken with no Missing Data
 mean(daily.total.fixed$`df.full$steps`)
 
@@ -126,7 +126,7 @@ median(daily.total.fixed$`df.full$steps`)
 
 #### 4.1 Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
 
-```{r weekday factor}
+```{r weekday_factor}
 df.full$date <- as.Date(df.full$date, "%Y-%m-%d")
 
 df.full$week <- ifelse(weekdays(df.full$date) == "Saturday" | weekdays(df.full$date) == "Sunday", "weekend", "weekday")
@@ -139,7 +139,7 @@ df.interval.week <- df.full %>%
 
 #### 4.2 Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
 
-```{r weektype plot}
+```{r weektype_plot}
 plot <- ggplot(df.interval.week, aes(x=interval, y= avgStep, color = week)) + geom_line() + 
   labs(title = "Avg Daily Steps During Weekend or Weekday", x = "Interval", y = "Avg Steps") + 
   facet_wrap(~week, ncol = 1, nrow = 2)
